@@ -1,4 +1,4 @@
-﻿<Window x:Class="Wpf_PueblosCLM.MainWindow"
+﻿<Window x:Class="Wpf_PueblosCLM.View.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,6 +7,8 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <ComboBox HorizontalAlignment="Left" Margin="117,110,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding listaPueblos}"/>
+        <Label Content="Pueblos de Castilla-La Mancha" HorizontalAlignment="Left" Margin="91,62,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
