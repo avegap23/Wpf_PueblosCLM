@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using Wpf_PueblosCLM.Models;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using Newtonsoft.Json;
 
 namespace Wpf_PueblosCLM.ViewModel
 {
@@ -40,11 +41,31 @@ namespace Wpf_PueblosCLM.ViewModel
             var client = new HttpClient();
             client.MaxResponseContentBufferSize = 1024 * 1024;
 
+            // URL al fichero csv
             string URLData = "https://docs.google.com/spreadsheets/d/1G0YM-YztE0hQBA6vQ0LpBU93x4OEO6LlNUqWpvIZVbM/gviz/tq?tqx=out:json&gid=482057707";
 
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            HttpResponseMessage response = await client.GetAsync(URLData);
+            // Un await para que responseMessage no trabaje antes de que llegue el JSON
+            HttpResponseMessage responseMessage = await client.GetAsync(URLData);
+
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var data1 = responseMessage.Content.ReadAsStringAsync();
+
+                // El JSON tiene caracteres que sobran. Vamos a eliminarlos
+
+                // Averiguar en qué posición comienza el JSON (donde está el "{")
+                int indice = (data1.Result.ToString()).IndexOf("{");
+                // Eliminar todo el principio
+                string cadena = (data1.Result.ToString()).Remove(0, indice);
+                // Eliminamos los dos últimos caracteres
+                string cadenaResultado = cadena.Substring(0, cadena.Length -2);
+
+                Root? pueblosData = JsonConvert.DeserializeObject<Root>(cadenaResultado);
+
+                int c = pueblosData.table.rows.Count;
+            }
         }
     }
 }
