@@ -3,12 +3,34 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Wpf_PueblosCLM"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <ComboBox HorizontalAlignment="Left" Margin="117,110,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding listaPueblos}"/>
-        <Label Content="Pueblos de Castilla-La Mancha" HorizontalAlignment="Left" Margin="91,62,0,0" VerticalAlignment="Top"/>
+        Title="MainWindow" Height="450" Width="365">
 
+    <Window.Resources>
+        <DataTemplate x:Key="DataTemplateC">
+            <Grid Width="160">
+                <TextBlock HorizontalAlignment="Left"
+                           VerticalAlignment="Top"
+                           Width="160"
+                           Height="20" 
+                           TextWrapping="Wrap" 
+                           Text="{Binding pueblo}"/>
+            </Grid>
+        </DataTemplate>
+    </Window.Resources>
+
+    <Grid>
+        <Label Content="Pueblos de Castilla-La Mancha" 
+               HorizontalAlignment="Center"
+               VerticalAlignment="Top"
+               FontSize="17"
+               Margin="0,50,0,0"/>
+        <ComboBox HorizontalAlignment="Left" 
+                  Margin="117,108,0,0" 
+                  VerticalAlignment="Top" 
+                  Width="120" 
+                  ItemsSource="{Binding listaPueblos}" 
+                  ItemTemplate="{DynamicResource DataTemplateC}"/>
     </Grid>
+
 </Window>

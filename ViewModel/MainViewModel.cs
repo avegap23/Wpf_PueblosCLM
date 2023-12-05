@@ -4,6 +4,7 @@ using Wpf_PueblosCLM.Models;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
+using System.Linq;
 
 namespace Wpf_PueblosCLM.ViewModel
 {
@@ -64,7 +65,16 @@ namespace Wpf_PueblosCLM.ViewModel
 
                 Root? pueblosData = JsonConvert.DeserializeObject<Root>(cadenaResultado);
 
-                int c = pueblosData.table.rows.Count;
+                int c = pueblosData.table.rows.Count();
+
+                // Metemos el nombre de cada pueblo en listaPueblos
+                for (int i = 0; i < c; i++)
+                {
+                    PuebloAux puebloA = new PuebloAux();
+                    
+                    puebloA.pueblo = pueblosData.table.rows[i].c[1].v.ToString();
+                    listaPueblos.Add(puebloA);
+                }
             }
         }
     }
