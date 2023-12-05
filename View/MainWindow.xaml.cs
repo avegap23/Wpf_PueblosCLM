@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using Wpf_PueblosCLM.ViewModel;
 
 namespace Wpf_PueblosCLM.View
 {
@@ -10,6 +11,7 @@ namespace Wpf_PueblosCLM.View
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new MainViewModel();
         }
     }
 }
