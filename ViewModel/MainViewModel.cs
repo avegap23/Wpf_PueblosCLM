@@ -43,7 +43,7 @@ namespace Wpf_PueblosCLM.ViewModel
             client.MaxResponseContentBufferSize = 1024 * 1024;
 
             // URL al fichero csv
-            string URLData = "https://docs.google.com/spreadsheets/d/1G0YM-YztE0hQBA6vQ0LpBU93x4OEO6LlNUqWpvIZVbM/gviz/tq?tqx=out:json&gid=482057707";
+            string URLData = "https://docs.google.com/spreadsheets/d/1gunIZh6PPvNRC37QH1YqXEH1HzEWWZrY/gviz/tq?tqx=out:json&gid=1060052662";
 
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
